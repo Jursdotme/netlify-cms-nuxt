@@ -64,15 +64,6 @@ export default {
 
   markdownit: {
     injected: true,
-    linkify: true,
-    html: true,
-    use: [
-      [
-        'markdown-it-anchor',
-        { permalink: true, permalinkBefore: false, permalinkSymbol: '§' },
-      ],
-      'markdown-it-toc-done-right',
-    ],
   },
   /*
    ** Axios module configuration
@@ -85,14 +76,5 @@ export default {
    */
   build: {},
 
-  generate: {
-    routes() {
-      const fs = require('fs')
-      const path = require('path')
-      return fs.readdirSync('./assets/content/blog').map((file) => ({
-        route: `/blog/${path.parse(file).name}`, // Return the slug
-        payload: require(`./assets/content/blog/${file}`),
-      }))
-    },
-  },
+  generate: {},
 }

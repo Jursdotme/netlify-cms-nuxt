@@ -1,14 +1,18 @@
 export const state = () => ({
   blogPosts: [],
-  employees: [],
   authors: [],
   settings: [],
 })
 
+export const getters = {
+  getPost: (state) => (slug) => {
+    return state.blogPosts.find((blogPost) => blogPost.slug === slug)
+  },
+}
+
 export const actions = {
   async nuxtServerInit({ dispatch }) {
     await dispatch('getBlogPosts')
-    await dispatch('getEmployees')
     await dispatch('getAuthors')
     await dispatch('getSettings')
   },
@@ -44,22 +48,6 @@ export const actions = {
     await commit('setBlogPosts', blogPosts)
   },
 
-  async getEmployees({ commit }) {
-    const employeeFiles = await require.context(
-      '~/assets/content/employees/',
-      false,
-      /\.json$/
-    )
-
-    const employees = employeeFiles.keys().map((key) => {
-      const res = employeeFiles(key)
-      res.slug = key.slice(2, -5)
-      return res
-    })
-
-    await commit('setEmployees', employees)
-  },
-
   async getAuthors({ commit }) {
     const authorFile = require('~/assets/settings/authors.json')
     await commit('setAuthors', authorFile.author)
@@ -75,9 +63,7 @@ export const mutations = {
   setBlogPosts(state, list) {
     state.blogPosts = list
   },
-  setEmployees(state, list) {
-    state.employees = list
-  },
+
   setAuthors(state, data) {
     state.authors = data
   },

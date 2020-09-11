@@ -2,7 +2,7 @@
   <div>
     <Hero />
     <Features />
-    <BlogLoop />
+    <BlogLoop post-count="3" />
     <LogoCloud />
   </div>
 </template>

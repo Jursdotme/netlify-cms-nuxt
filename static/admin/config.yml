@@ -35,22 +35,6 @@ collections:
   #     - { label: 'Title',name: 'title',widget: 'string'}
   #     - { label: 'Publish Date',name: 'date',widget: 'datetime'}
   #     - { label: 'Body',name: 'body',widget: 'markdown'} 
-
-  - name: 'employees'
-    label: 'Employees'
-    format: 'json'
-    folder: 'assets/content/employees'
-    create: true
-    slug: '{{name}}'
-    editor:
-      preview: false
-    fields:
-      - { label: 'Name',name: 'title',widget: 'string'}
-      - { label: 'Title',name: 'employeetitle',widget: 'string'}
-      - { label: 'Biography',name: 'biography',widget: 'text'}
-      - { label: 'Portrait',name: 'portrait',widget: 'image', required: false}
-      - { label: 'Email',name: 'email',widget: 'string'}
-      - { label: 'Phone',name: 'phone',widget: 'string'}
   
   - name: 'settings'
     label: 'Settings'
@@ -76,7 +60,6 @@ collections:
             widget: list
             fields:
               - { label: 'Name', name: 'name', widget: 'string', hint: 'First and Last' }
-              - { label: 'Portrait', name: 'portrait', widget: "image" }
       - name: 'mainmenu'
         label: 'Main Menu'
         file: 'assets/settings/mainmenu.json'
