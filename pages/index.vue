@@ -2,13 +2,18 @@
   <div>
     <Hero />
     <Features />
-    <BlogLoop post-count="3" />
+    <BlogLoop :post-count="postCount" />
     <LogoCloud />
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      postCount: 10,
+    }
+  },
   head() {
     return {
       script: [

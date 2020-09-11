@@ -20,12 +20,12 @@
         </p>
       </div>
       <div
-        class="grid max-w-lg gap-5 mx-auto mt-12 lg:grid-cols-3 lg:max-w-none"
+        class="grid max-w-lg gap-8 mx-auto mt-12 lg:grid-cols-3 lg:max-w-none"
       >
         <div
           v-for="post in loadedPosts"
           :key="post.slug"
-          class="flex flex-col overflow-hidden rounded-lg shadow-lg"
+          class="flex flex-col overflow-hidden transition-shadow duration-200 rounded-lg shadow-lg hover:shadow-xl"
         >
           <nuxt-link :to="postLink(post)" class="flex-shrink-0">
             <img
@@ -73,6 +73,9 @@ export default {
   },
   computed: {
     loadedPosts() {
+      if (this.postCount <= 0) {
+        return this.$store.state.blogPosts
+      }
       return this.$store.state.blogPosts.slice(0, this.postCount)
     },
   },
